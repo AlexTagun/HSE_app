@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'QuizView.dart';
 
 class TextButton extends StatefulWidget {
   @override
@@ -8,19 +9,15 @@ class TextButton extends StatefulWidget {
 }
 
 class TextButtonState extends State<TextButton> {
-  int number = 0;
 
-  void subtractNumbers() {
-    setState(() {
-      number = number - 1;
-    });
+
+  void toQuizVew() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => QuizView()),
+    );
   }
 
-  void addNumbers() {
-    setState(() {
-      number = number + 1;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +37,7 @@ class TextButtonState extends State<TextButton> {
                     padding: const EdgeInsets.all(8.0),
                     textColor: Colors.white,
                     color: Colors.blue,
-                    onPressed: addNumbers,
+                    onPressed: toQuizVew,
                     child: new Text("Викторина"),
                   ),
 
@@ -53,7 +50,7 @@ class TextButtonState extends State<TextButton> {
                     padding: const EdgeInsets.all(8.0),
                     textColor: Colors.white,
                     color: Colors.blue,
-                    onPressed: addNumbers,
+                    onPressed: toQuizVew,
                     child: new Text("Второй режим"),
                   ),
 
