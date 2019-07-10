@@ -1,17 +1,8 @@
 import 'CountryQuizData.dart';
 import 'package:xml/xml.dart' as xml;
-import 'package:flutter/services.dart' show rootBundle;
+
 
 class Parser{
-  static const String COUNTRY_QUIZ_PATH = "assets/res/CountryQuiz.xml";
-
-  //TODO: shift to loadFile class
-  static Future<String> getCountryQuizString() async{
-    var countryQuizString = await rootBundle.loadString(COUNTRY_QUIZ_PATH);
-
-    var countryQuizData = parseCountryQuizData(countryQuizString);
-    return countryQuizString;
-  }
 
   static CountryQuizData parseCountryQuizData(String countryQuizString){
     var countryQuizXml = xml.parse(countryQuizString);
