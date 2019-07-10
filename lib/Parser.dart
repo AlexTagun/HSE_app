@@ -39,6 +39,10 @@ class Parser{
       if(currentAttribute.name.toString() == "text"){
         data.text = currentAttribute.value;
       }
+
+      if(currentAttribute.name.toString() == "info"){
+        data.info = currentAttribute.value;
+      }
     }
 
     var answerElementList = questionElement.findElements('answer');

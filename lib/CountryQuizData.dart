@@ -5,11 +5,12 @@ class CountryQuizData{
 class QuestionData{
   int id;
   String text;
+  String info;
   List<AnswerData> answers;
 
   @override
   String toString() {
-    return "id = " + id.toString() + "; text = " + text;
+    return "id = " + id.toString() + "; text = " + text + "; info = " + info;
   }
 
 }

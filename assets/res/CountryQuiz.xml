@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <country_quiz>
-	<question id="0" text="hello?">
+	<question id="0" text="hello?" info="add info">
 		<answer id="0" text="yes" correct="true"></answer>
 		<answer id="1" text="no" correct="false"></answer>
 		<answer id="2" text="maybe" correct="false"></answer>
 		<answer id="3" text="NaN" correct="false"></answer>
 	</question>
-	<question id="1" text="hello1?">
+	<question id="1" text="hello1?" info="add info1">
 		<answer id="0" text="yes" correct="false"></answer>
 		<answer id="1" text="no" correct="false"></answer>
 		<answer id="2" text="maybe" correct="true"></answer>
