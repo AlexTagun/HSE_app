@@ -9,6 +9,10 @@ class DataManager{
     _countryQuizData = data;
   }
 
+  CountryQuizData getCountryQuizData(){
+    return _countryQuizData;
+  }
+
   static DataManager instance(){
     if(_manager == null){
       _manager = new DataManager();
