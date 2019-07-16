@@ -37,6 +37,7 @@ class Parser{
       }
 
       if(currentAttribute.name.toString() == "text"){
+
         data.text = currentAttribute.value;
       }
 
@@ -44,6 +45,8 @@ class Parser{
         data.info = currentAttribute.value;
       }
     }
+
+    print(data.toString());
 
     var answerElementList = questionElement.findElements('answer');
 
@@ -55,8 +58,6 @@ class Parser{
 
     data.answers = answerList;
     
-    print(data.toString());
-
     return data;
   }
 
