@@ -9,8 +9,17 @@ class QuizView extends StatefulWidget {
 
 class QuizViewState extends State<QuizView> {
 
+  bool visibilityTag = false;
+
   void toMainVew() {
     Navigator.pop(context);
+  }
+
+  void showAnswer(int buttonNum){
+    setState(() {
+      buttonNum++;
+      visibilityTag = true;
+    });
   }
 
   @override
@@ -21,42 +30,52 @@ class QuizViewState extends State<QuizView> {
       ),
       body: Center(
         child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
-              "Вопрос"
-            ),
-            new RaisedButton(
-              padding: const EdgeInsets.all(8.0),
-              textColor: Colors.white,
-              color: Colors.blue,
-              onPressed: toMainVew,
-              child: new Text(
-                "Ответ 1"
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text(
+                  "Вопрос"
               ),
-            ),
-            new RaisedButton(
-              padding: const EdgeInsets.all(8.0),
-              textColor: Colors.white,
-              color: Colors.blue,
-              onPressed: toMainVew,
-              child: new Text("Ответ 2"),
-            ),
-            new RaisedButton(
-              padding: const EdgeInsets.all(8.0),
-              textColor: Colors.white,
-              color: Colors.blue,
-              onPressed: toMainVew,
-              child: new Text("Ответ 3"),
-            ),
-            new RaisedButton(
-              padding: const EdgeInsets.all(8.0),
-              textColor: Colors.white,
-              color: Colors.blue,
-              onPressed: toMainVew,
-              child: new Text("Ответ 4"),
-            ),
-          ]
+              new RaisedButton(
+                padding: const EdgeInsets.all(8.0),
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: (){showAnswer(1);},
+                child: new Text(
+                    "Ответ 1"
+                ),
+              ),
+              new RaisedButton(
+                padding: const EdgeInsets.all(8.0),
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: (){showAnswer(2);},
+                child: new Text("Ответ 2"),
+              ),
+              new RaisedButton(
+                padding: const EdgeInsets.all(8.0),
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: (){showAnswer(3);},
+                child: new Text("Ответ 3"),
+              ),
+              new RaisedButton(
+                padding: const EdgeInsets.all(8.0),
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: (){showAnswer(4);},
+                child: new Text("Ответ 4"),
+              ),
+              visibilityTag ? new Text("Тупо подсказка",) : new Container(),
+
+
+              visibilityTag ? new RaisedButton(
+                padding: const EdgeInsets.all(8.0),
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: toMainVew,
+                child: new Text("Далее"),
+              ) : new Container(),
+            ]
         ),
 
       ),
