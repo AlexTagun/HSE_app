@@ -11,12 +11,24 @@ class QuizManager{
     _currentQuestionId = 0;
   }
 
-  void changeQuestion(){
+  void changeQuestion() {
     _currentQuestionId++;
 
-    if(_MAX_QUESTION_COUNT < _currentQuestionId){
+    if (_MAX_QUESTION_COUNT < _currentQuestionId) {
       //TODO: show total view
     }
+  }
+
+  bool isAnswerCorrect(int id){
+    return DataManager.instance().getCountryQuizData().questions[_currentQuestionId].answers[id].isCorrect;
+  }
+
+  int getCorrectAnswerId(){
+    var answers = DataManager.instance().getCountryQuizData().questions[_currentQuestionId].answers;
+    for(int cnt = 0; cnt < answers.length; cnt++){
+      if(answers[cnt].isCorrect) return cnt;
+    }
+    return null;
   }
 
   String getQuestion(){

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hse_app/QuizManager.dart';
 
+
 class QuizView extends StatefulWidget {
 
   @override
@@ -12,6 +13,10 @@ class QuizView extends StatefulWidget {
 class QuizViewState extends State<QuizView> {
 
   bool visibilityTag = false;
+  Color colorButton0 = Colors.blue;
+  Color colorButton1 = Colors.blue;
+  Color colorButton2 = Colors.blue;
+  Color colorButton3 = Colors.blue;
 
   void toMainView() {
     Navigator.pop(context);
@@ -27,8 +32,28 @@ class QuizViewState extends State<QuizView> {
     );
   }
 
+  void setColorButton(int buttonNum, Color color){
+    switch(buttonNum){
+      case 0: colorButton0 = color;
+      break;
+      case 1: colorButton1 = color;
+      break;
+      case 2: colorButton2 = color;
+      break;
+      case 3: colorButton3 = color;
+      break;
+      default:  return;
+    }
+  }
+
   void showAnswer(int buttonNum){
     setState(() {
+      if(QuizManager.instance().isAnswerCorrect(buttonNum)){
+        setColorButton(buttonNum, Colors.green);
+      }else{
+        setColorButton(buttonNum, Colors.red);
+        setColorButton(QuizManager.instance().getCorrectAnswerId(), Colors.green);
+      }
       buttonNum++;
       visibilityTag = true;
     });
@@ -50,7 +75,7 @@ class QuizViewState extends State<QuizView> {
               new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
                 textColor: Colors.white,
-                color: Colors.blue,
+                color: colorButton0,
                 onPressed: (){showAnswer(0);},
                 child: new Text(
                     QuizManager.instance().getAnswerById(0)
@@ -59,7 +84,7 @@ class QuizViewState extends State<QuizView> {
               new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
                 textColor: Colors.white,
-                color: Colors.blue,
+                color: colorButton1,
                 onPressed: (){showAnswer(1);},
                 child: new Text(
                     QuizManager.instance().getAnswerById(1)
@@ -68,7 +93,7 @@ class QuizViewState extends State<QuizView> {
               new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
                 textColor: Colors.white,
-                color: Colors.blue,
+                color: colorButton2,
                 onPressed: (){showAnswer(2);},
                 child: new Text(
                     QuizManager.instance().getAnswerById(2)
@@ -77,7 +102,7 @@ class QuizViewState extends State<QuizView> {
               new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
                 textColor: Colors.white,
-                color: Colors.blue,
+                color: colorButton3,
                 onPressed: (){showAnswer(3);},
                 child: new Text(
                     QuizManager.instance().getAnswerById(3)
