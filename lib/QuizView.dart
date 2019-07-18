@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hse_app/DataManager.dart';
+import 'package:hse_app/QuizManager.dart';
+
 class QuizView extends StatefulWidget {
 
   @override
@@ -10,34 +11,20 @@ class QuizView extends StatefulWidget {
 
 class QuizViewState extends State<QuizView> {
 
-  int questionNum = 0;
-  String text;
   bool visibilityTag = false;
-
-  String getQuestion(){
-    var data = DataManager.instance().getCountryQuizData();
-    var question = data.questions[questionNum];
-    return question.text;
-  }
-
-  String getAnswerById(int id){
-    var data = DataManager.instance().getCountryQuizData();
-    var answers = data.questions[questionNum].answers;
-    return answers[id].text;
-  }
-
-  String getHint(){
-    var data = DataManager.instance().getCountryQuizData();
-    var question = data.questions[questionNum];
-    return question.info;
-  }
 
   void toMainView() {
     Navigator.pop(context);
   }
 
-  void toNextQuestionView(){
 
+  void toNextQuestionView(){
+    QuizManager.instance().changeQuestion();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => QuizView()),
+
+    );
   }
 
   void showAnswer(int buttonNum){
@@ -58,7 +45,7 @@ class QuizViewState extends State<QuizView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(
-                  getQuestion()
+                  QuizManager.instance().getQuestion()
               ),
               new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
@@ -66,7 +53,7 @@ class QuizViewState extends State<QuizView> {
                 color: Colors.blue,
                 onPressed: (){showAnswer(0);},
                 child: new Text(
-                    getAnswerById(0)
+                    QuizManager.instance().getAnswerById(0)
                 ),
               ),
               new RaisedButton(
@@ -75,7 +62,7 @@ class QuizViewState extends State<QuizView> {
                 color: Colors.blue,
                 onPressed: (){showAnswer(1);},
                 child: new Text(
-                    getAnswerById(1)
+                    QuizManager.instance().getAnswerById(1)
                 ),
               ),
               new RaisedButton(
@@ -84,7 +71,7 @@ class QuizViewState extends State<QuizView> {
                 color: Colors.blue,
                 onPressed: (){showAnswer(2);},
                 child: new Text(
-                    getAnswerById(2)
+                    QuizManager.instance().getAnswerById(2)
                 ),
               ),
               new RaisedButton(
@@ -93,17 +80,17 @@ class QuizViewState extends State<QuizView> {
                 color: Colors.blue,
                 onPressed: (){showAnswer(3);},
                 child: new Text(
-                    getAnswerById(3)
+                    QuizManager.instance().getAnswerById(3)
                 ),
               ),
-              visibilityTag ? new Text(getHint(),) : new Container(),
+              visibilityTag ? new Text(QuizManager.instance().getHint(),) : new Container(),
 
 
               visibilityTag ? new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
                 textColor: Colors.white,
                 color: Colors.blue,
-                onPressed: toMainView,
+                onPressed: toNextQuestionView,
                 child: new Text("Далее"),
               ) : new Container(),
             ]

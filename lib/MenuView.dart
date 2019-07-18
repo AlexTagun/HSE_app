@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'QuizView.dart';
 import 'package:hse_app/LoadManager.dart';
+import 'package:hse_app/QuizManager.dart';
 
 class MainView extends StatefulWidget {
   @override
@@ -13,15 +14,15 @@ class MainViewState extends State<MainView> {
 
 
   void toQuizVew() {
-    print("go");
     if(LoadManager.instance().isAllLoaded()) {
+      QuizManager.instance().startQuiz();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => QuizView()),
 
       );
     }else{
-      print("Ты даун");
+      print("File is not loaded");
     }
   }
 
