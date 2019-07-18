@@ -1,30 +1,50 @@
 import 'package:hse_app/DataManager.dart';
 
 class QuizManager{
-  static const int _MAX_QUESTION_COUNT = 10;
+  static const int MAX_QUESTION_COUNT = 10;
+
+  int _correctAnswerCount = 0;
+  bool _isAnswerChecked = false;
+
+
 
 
   static QuizManager _manager;
-  int _currentQuestionId = 0;
+  int currentQuestionId = 0;
 
   void startQuiz(){
-    _currentQuestionId = 0;
+    currentQuestionId = 0;
+    _correctAnswerCount = 0;
+    _isAnswerChecked = false;
   }
 
   void changeQuestion() {
-    _currentQuestionId++;
-
-    if (_MAX_QUESTION_COUNT < _currentQuestionId) {
-      //TODO: show total view
-    }
+    currentQuestionId++;
+    _isAnswerChecked = false;
   }
 
   bool isAnswerCorrect(int id){
-    return DataManager.instance().getCountryQuizData().questions[_currentQuestionId].answers[id].isCorrect;
+    var isCorrect = DataManager.instance().getCountryQuizData().questions[currentQuestionId].answers[id].isCorrect;
+
+    return isCorrect;
   }
 
+  bool checkAnswerCorrect(int id){
+    var isCorrect = isAnswerCorrect(id);
+    if(!_isAnswerChecked){
+      if(isCorrect){
+        _correctAnswerCount++;
+      }
+
+      _isAnswerChecked = true;
+    }
+
+    return isCorrect;
+  }
+
+
   int getCorrectAnswerId(){
-    var answers = DataManager.instance().getCountryQuizData().questions[_currentQuestionId].answers;
+    var answers = DataManager.instance().getCountryQuizData().questions[currentQuestionId].answers;
     for(int cnt = 0; cnt < answers.length; cnt++){
       if(answers[cnt].isCorrect) return cnt;
     }
@@ -33,20 +53,24 @@ class QuizManager{
 
   String getQuestion(){
     var data = DataManager.instance().getCountryQuizData();
-    var question = data.questions[_currentQuestionId];
+    var question = data.questions[currentQuestionId];
     return question.text;
   }
 
   String getAnswerById(int id){
     var data = DataManager.instance().getCountryQuizData();
-    var answers = data.questions[_currentQuestionId].answers;
+    var answers = data.questions[currentQuestionId].answers;
     return answers[id].text;
   }
 
   String getHint(){
     var data = DataManager.instance().getCountryQuizData();
-    var question = data.questions[_currentQuestionId];
+    var question = data.questions[currentQuestionId];
     return question.info;
+  }
+
+  int getCorrectAnswerCount(){
+    return _correctAnswerCount;
   }
 
   static QuizManager instance(){

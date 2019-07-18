@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hse_app/QuizManager.dart';
+import 'ResultView.dart';
 
 
 class QuizView extends StatefulWidget {
@@ -25,11 +26,19 @@ class QuizViewState extends State<QuizView> {
 
   void toNextQuestionView(){
     QuizManager.instance().changeQuestion();
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => QuizView()),
 
-    );
+    if (QuizManager.MAX_QUESTION_COUNT < QuizManager.instance().currentQuestionId) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ResultView()),
+      );
+    }else{
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => QuizView()),
+      );
+    }
+
   }
 
   void setColorButton(int buttonNum, Color color){
@@ -48,7 +57,7 @@ class QuizViewState extends State<QuizView> {
 
   void showAnswer(int buttonNum){
     setState(() {
-      if(QuizManager.instance().isAnswerCorrect(buttonNum)){
+      if(QuizManager.instance().checkAnswerCorrect(buttonNum)){
         setColorButton(buttonNum, Colors.green);
       }else{
         setColorButton(buttonNum, Colors.red);
