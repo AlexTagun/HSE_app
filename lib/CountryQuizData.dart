@@ -12,7 +12,6 @@ class QuestionData{
   String toString() {
     return "id = " + id.toString() + "; text = " + text + "; info = " + info;
   }
-
 }
 
 class AnswerData{

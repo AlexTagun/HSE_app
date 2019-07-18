@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'MenuView.dart';
+import 'package:hse_app/LoadManager.dart';
 
-void main() => runApp(MyApp());
+void main(){
+  LoadManager.instance().load();
+  runApp(MyApp());
+
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -23,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: TextButton(),
+      home: MainView(),
     );
   }
 }

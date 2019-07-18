@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:hse_app/DataManager.dart';
 class QuizView extends StatefulWidget {
+
   @override
   State<StatefulWidget> createState() {
     return new QuizViewState();
@@ -9,10 +10,34 @@ class QuizView extends StatefulWidget {
 
 class QuizViewState extends State<QuizView> {
 
+  int questionNum = 0;
+  String text;
   bool visibilityTag = false;
 
-  void toMainVew() {
+  String getQuestion(){
+    var data = DataManager.instance().getCountryQuizData();
+    var question = data.questions[questionNum];
+    return question.text;
+  }
+
+  String getAnswerById(int id){
+    var data = DataManager.instance().getCountryQuizData();
+    var answers = data.questions[questionNum].answers;
+    return answers[id].text;
+  }
+
+  String getHint(){
+    var data = DataManager.instance().getCountryQuizData();
+    var question = data.questions[questionNum];
+    return question.info;
+  }
+
+  void toMainView() {
     Navigator.pop(context);
+  }
+
+  void toNextQuestionView(){
+
   }
 
   void showAnswer(int buttonNum){
@@ -33,7 +58,16 @@ class QuizViewState extends State<QuizView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(
-                  "Вопрос"
+                  getQuestion()
+              ),
+              new RaisedButton(
+                padding: const EdgeInsets.all(8.0),
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: (){showAnswer(0);},
+                child: new Text(
+                    getAnswerById(0)
+                ),
               ),
               new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
@@ -41,7 +75,7 @@ class QuizViewState extends State<QuizView> {
                 color: Colors.blue,
                 onPressed: (){showAnswer(1);},
                 child: new Text(
-                    "Ответ 1"
+                    getAnswerById(1)
                 ),
               ),
               new RaisedButton(
@@ -49,30 +83,27 @@ class QuizViewState extends State<QuizView> {
                 textColor: Colors.white,
                 color: Colors.blue,
                 onPressed: (){showAnswer(2);},
-                child: new Text("Ответ 2"),
+                child: new Text(
+                    getAnswerById(2)
+                ),
               ),
               new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
                 textColor: Colors.white,
                 color: Colors.blue,
                 onPressed: (){showAnswer(3);},
-                child: new Text("Ответ 3"),
+                child: new Text(
+                    getAnswerById(3)
+                ),
               ),
-              new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: Colors.blue,
-                onPressed: (){showAnswer(4);},
-                child: new Text("Ответ 4"),
-              ),
-              visibilityTag ? new Text("Тупо подсказка",) : new Container(),
+              visibilityTag ? new Text(getHint(),) : new Container(),
 
 
               visibilityTag ? new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
                 textColor: Colors.white,
                 color: Colors.blue,
-                onPressed: toMainVew,
+                onPressed: toMainView,
                 child: new Text("Далее"),
               ) : new Container(),
             ]

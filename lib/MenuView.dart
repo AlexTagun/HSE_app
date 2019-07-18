@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 import 'QuizView.dart';
+import 'package:hse_app/LoadManager.dart';
 
-class TextButton extends StatefulWidget {
+class MainView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new TextButtonState();
+    return new MainViewState();
   }
 }
 
-class TextButtonState extends State<TextButton> {
+class MainViewState extends State<MainView> {
 
 
   void toQuizVew() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => QuizView()),
-    );
+    print("go");
+    if(LoadManager.instance().isAllLoaded()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => QuizView()),
+
+      );
+    }else{
+      print("Ты даун");
+    }
   }
 
 
