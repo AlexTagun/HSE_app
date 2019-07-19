@@ -13,6 +13,7 @@ class QuizView extends StatefulWidget {
 
 class QuizViewState extends State<QuizView> {
 
+  bool isAnswerGiven = false;
   bool visibilityTag = false;
   Color colorButton0 = Colors.blue;
   Color colorButton1 = Colors.blue;
@@ -56,6 +57,8 @@ class QuizViewState extends State<QuizView> {
   }
 
   void showAnswer(int buttonNum){
+    if(isAnswerGiven) return;
+    isAnswerGiven = true;
     setState(() {
       if(QuizManager.instance().checkAnswerCorrect(buttonNum)){
         setColorButton(buttonNum, Colors.green);
