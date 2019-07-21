@@ -13,7 +13,7 @@ class MainView extends StatefulWidget {
 class MainViewState extends State<MainView> {
 
 
-  void toQuizVew() {
+  void toQuizView() {
     if(LoadManager.instance().isAllLoaded()) {
       QuizManager.instance().startQuiz();
       Navigator.push(
@@ -45,7 +45,7 @@ class MainViewState extends State<MainView> {
                     padding: const EdgeInsets.all(8.0),
                     textColor: Colors.white,
                     color: Colors.blue,
-                    onPressed: toQuizVew,
+                    onPressed: toQuizView,
                     child: new Text("Викторина"),
                   ),
 
@@ -58,7 +58,7 @@ class MainViewState extends State<MainView> {
                     padding: const EdgeInsets.all(8.0),
                     textColor: Colors.white,
                     color: Colors.blue,
-                    onPressed: toQuizVew,
+                    onPressed: toQuizView,
                     child: new Text("Второй режим"),
                   ),
 
