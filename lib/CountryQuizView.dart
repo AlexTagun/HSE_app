@@ -79,57 +79,113 @@ class CountryQuizViewState extends State<CountryQuizView> {
       ),
       body: Center(
         child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+//            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Text(
-                  QuizManager.instance().getQuestion()
+              Expanded(
+                child:
+                  new Text(
+                      QuizManager.instance().getQuestion()
+                  ),
+                flex: 2,
               ),
-              new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: colorButton0,
-                onPressed: (){showAnswer(0);},
-                child: new Text(
-                    QuizManager.instance().getAnswerById(0)
-                ),
-              ),
-              new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: colorButton1,
-                onPressed: (){showAnswer(1);},
-                child: new Text(
-                    QuizManager.instance().getAnswerById(1)
-                ),
-              ),
-              new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: colorButton2,
-                onPressed: (){showAnswer(2);},
-                child: new Text(
-                    QuizManager.instance().getAnswerById(2)
-                ),
-              ),
-              new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: colorButton3,
-                onPressed: (){showAnswer(3);},
-                child: new Text(
-                    QuizManager.instance().getAnswerById(3)
-                ),
-              ),
-              visibilityTag ? new Text(QuizManager.instance().getHint(),) : new Container(),
 
 
-              visibilityTag ? new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: Colors.blue,
-                onPressed: toNextQuestionView,
-                child: new Text("Далее"),
+
+              Expanded(
+                child: Divider(),
+                flex: 1,
+              ),
+//              visibilityTag ? new Text(QuizManager.instance().getHint(),) : new Container(),
+              !visibilityTag ? Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(color: Colors.white),
+                ),
+                flex: 2,
               ) : new Container(),
+              visibilityTag ? Expanded(
+                child: new Text(QuizManager.instance().getHint(),),
+                flex: 2,
+              ) : new Container(),
+
+              Expanded(
+                child:  new Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: new Column(
+                        children: <Widget>[
+                          new RaisedButton(
+                            padding: const EdgeInsets.all(8.0),
+                            textColor: Colors.white,
+                            color: colorButton0,
+                            onPressed: (){showAnswer(0);},
+                            child: new Text(
+                                QuizManager.instance().getAnswerById(0)
+                            ),
+                          ),
+                          new RaisedButton(
+                            padding: const EdgeInsets.all(8.0),
+                            textColor: Colors.white,
+                            color: colorButton1,
+                            onPressed: (){showAnswer(1);},
+                            child: new Text(
+                                QuizManager.instance().getAnswerById(1)
+                            ),
+                          ),
+                        ],
+                      ),
+                      flex: 1,
+                    ),
+
+                    Expanded(
+                      child: new Column(
+
+                        children: <Widget>[
+                          new RaisedButton(
+                            padding: const EdgeInsets.all(8.0),
+                            textColor: Colors.white,
+                            color: colorButton2,
+                            onPressed: (){showAnswer(2);},
+                            child: new Text(
+                                QuizManager.instance().getAnswerById(2)
+                            ),
+                          ),
+                          new RaisedButton(
+                            padding: const EdgeInsets.all(8.0),
+                            textColor: Colors.white,
+                            color: colorButton3,
+                            onPressed: (){showAnswer(3);},
+                            child: new Text(
+                                QuizManager.instance().getAnswerById(3)
+                            ),
+                          ),
+                        ],
+                      ),
+                      flex: 1,
+                    ),
+                  ],
+                ),
+                flex: 3,
+              ),
+
+
+//               new RaisedButton(
+              !visibilityTag ? Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(color: Colors.white),
+                ),
+                flex: 1,
+              ) : new Container(),
+              visibilityTag ? Expanded(
+                child: new RaisedButton(
+                  padding: const EdgeInsets.all(8.0),
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  onPressed: toNextQuestionView,
+                  child: new Text("Далее"),
+                  ),
+                flex: 1,
+              ) : new Container(),
+//              visibilityTag ?
             ]
         ),
 
