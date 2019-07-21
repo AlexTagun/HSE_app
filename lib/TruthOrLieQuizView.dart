@@ -3,22 +3,20 @@ import 'package:hse_app/QuizManager.dart';
 import 'ResultView.dart';
 
 
-class CountryQuizView extends StatefulWidget {
+class TruthOrLieQuizView extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return new CountryQuizViewState();
+    return new TruthOrLieQuizViewState();
   }
 }
 
-class CountryQuizViewState extends State<CountryQuizView> {
+class TruthOrLieQuizViewState extends State<TruthOrLieQuizView> {
 
   bool isAnswerGiven = false;
   bool visibilityTag = false;
   Color colorButton0 = Colors.blue;
   Color colorButton1 = Colors.blue;
-  Color colorButton2 = Colors.blue;
-  Color colorButton3 = Colors.blue;
 
   void toMainView() {
     Navigator.pop(context);
@@ -36,7 +34,7 @@ class CountryQuizViewState extends State<CountryQuizView> {
     }else{
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CountryQuizView()),
+        MaterialPageRoute(builder: (context) => TruthOrLieQuizView()),
       );
     }
 
@@ -47,10 +45,6 @@ class CountryQuizViewState extends State<CountryQuizView> {
       case 0: colorButton0 = color;
       break;
       case 1: colorButton1 = color;
-      break;
-      case 2: colorButton2 = color;
-      break;
-      case 3: colorButton3 = color;
       break;
       default:  return;
     }
@@ -102,27 +96,7 @@ class CountryQuizViewState extends State<CountryQuizView> {
                     QuizManager.instance().getAnswerById(1)
                 ),
               ),
-              new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: colorButton2,
-                onPressed: (){showAnswer(2);},
-                child: new Text(
-                    QuizManager.instance().getAnswerById(2)
-                ),
-              ),
-              new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: colorButton3,
-                onPressed: (){showAnswer(3);},
-                child: new Text(
-                    QuizManager.instance().getAnswerById(3)
-                ),
-              ),
               visibilityTag ? new Text(QuizManager.instance().getHint(),) : new Container(),
-
-
               visibilityTag ? new RaisedButton(
                 padding: const EdgeInsets.all(8.0),
                 textColor: Colors.white,

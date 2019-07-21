@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'QuizView.dart';
+import 'CountryQuizView.dart';
+import 'TruthOrLieQuizView.dart';
+
 import 'package:hse_app/LoadManager.dart';
 import 'package:hse_app/QuizManager.dart';
 
@@ -14,19 +16,24 @@ class MainViewState extends State<MainView> {
 
 
   void toCountryQuizView(){
-    toQuizView(QuizType.Country);
+    if(LoadManager.instance().isAllLoaded()) {
+      QuizManager.instance().startQuiz(QuizType.Country);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CountryQuizView()),
+
+      );
+    }else{
+      print("File is not loaded");
+    }
   }
 
   void toTrueOrLieQuizView(){
-    toQuizView(QuizType.TruthOrLie);
-  }
-
-  void toQuizView(QuizType quizType) {
     if(LoadManager.instance().isAllLoaded()) {
-      QuizManager.instance().startQuiz(quizType);
+      QuizManager.instance().startQuiz(QuizType.TruthOrLie);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => QuizView()),
+        MaterialPageRoute(builder: (context) => TruthOrLieQuizView()),
 
       );
     }else{
