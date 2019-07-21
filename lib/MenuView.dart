@@ -53,32 +53,36 @@ class MainViewState extends State<MainView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  new RaisedButton(
-                    padding: const EdgeInsets.all(8.0),
-                    textColor: Colors.white,
-                    color: Colors.blue,
-                    onPressed: toCountryQuizView,
-                    child: new Text("Викторина"),
-                  ),
+              new Image.asset(
+                'assets/res/hse_logo.png',
+                fit: BoxFit.contain,
+              ),
 
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  new Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                        new RaisedButton(
+                          padding: const EdgeInsets.all(8.0),
+                          textColor: Colors.white,
+                          color: Colors.blue,
+                          onPressed: toCountryQuizView,
+                          child: new Text("Викторина"),
+                        ),
+
+                        new RaisedButton(
+                          padding: const EdgeInsets.all(8.0),
+                          textColor: Colors.white,
+                          color: Colors.blue,
+                          onPressed: toTrueOrLieQuizView,
+                          child: new Text("Второй режим"),
+                        ),
+                      ],
+                  ),
                 ],
               ),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  new RaisedButton(
-                    padding: const EdgeInsets.all(8.0),
-                    textColor: Colors.white,
-                    color: Colors.blue,
-                    onPressed: toTrueOrLieQuizView,
-                    child: new Text("Второй режим"),
-                  ),
-
-                ],
-              )
             ],
           ),
         ));

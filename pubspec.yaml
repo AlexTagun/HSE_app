@@ -46,7 +46,14 @@ flutter:
   assets:
     - assets/res/CountryQuiz.xml
     - assets/res/TruthOrLieQuiz.xml
+    - assets/res/hse_logo.png
 
+  fonts:
+    - family: MyriadPro
+      fonts:
+        - asset: assets/res/MyriadPro-Bold.ttf
+        - asset: assets/res/MyriadPro-Light.ttf
+        - asset: assets/res/MyriadPro-Regular.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
