@@ -1,16 +1,25 @@
-import 'CountryQuizData.dart';
+import 'QuizData.dart';
 
 class DataManager{
   static DataManager _manager;
 
-  CountryQuizData _countryQuizData;
+  QuizData _countryQuizData;
+  QuizData _truthOrLieData;
 
-  void setCountryQuizData(CountryQuizData data){
+  void setCountryQuizData(QuizData data){
     _countryQuizData = data;
   }
 
-  CountryQuizData getCountryQuizData(){
+  void setTruthOrLieQuizData(QuizData data){
+    _truthOrLieData = data;
+  }
+
+  QuizData getCountryQuizData(){
     return _countryQuizData;
+  }
+
+  QuizData getTruthOrLieQuizData(){
+    return _truthOrLieData;
   }
 
   static DataManager instance(){

@@ -1,4 +1,4 @@
-class CountryQuizData{
+class QuizData{
   List<QuestionData> questions;
 }
 

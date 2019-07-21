@@ -1,11 +1,11 @@
-import 'CountryQuizData.dart';
+import 'QuizData.dart';
 import 'package:xml/xml.dart' as xml;
 
 
 class Parser{
 
-  static CountryQuizData parseCountryQuizData(String countryQuizString){
-    var countryQuizXml = xml.parse(countryQuizString);
+  static QuizData parseQuizData(String quizString){
+    var countryQuizXml = xml.parse(quizString);
     print(countryQuizXml.toString());
 
     var countryQuizElement = countryQuizXml.rootElement;
@@ -19,7 +19,7 @@ class Parser{
       questionList.add(question);
     }
 
-    CountryQuizData data = new CountryQuizData();
+    QuizData data = new QuizData();
     data.questions = questionList;
 
     return data;
