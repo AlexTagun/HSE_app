@@ -13,9 +13,17 @@ class MainView extends StatefulWidget {
 class MainViewState extends State<MainView> {
 
 
-  void toQuizView() {
+  void toCountryQuizView(){
+    toQuizView(QuizType.Country);
+  }
+
+  void toTrueOrLieQuizView(){
+    toQuizView(QuizType.TruthOrLie);
+  }
+
+  void toQuizView(QuizType quizType) {
     if(LoadManager.instance().isAllLoaded()) {
-      QuizManager.instance().startQuiz();
+      QuizManager.instance().startQuiz(quizType);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => QuizView()),
@@ -45,7 +53,7 @@ class MainViewState extends State<MainView> {
                     padding: const EdgeInsets.all(8.0),
                     textColor: Colors.white,
                     color: Colors.blue,
-                    onPressed: toQuizView,
+                    onPressed: toCountryQuizView,
                     child: new Text("Викторина"),
                   ),
 
@@ -58,7 +66,7 @@ class MainViewState extends State<MainView> {
                     padding: const EdgeInsets.all(8.0),
                     textColor: Colors.white,
                     color: Colors.blue,
-                    onPressed: toQuizView,
+                    onPressed: toTrueOrLieQuizView,
                     child: new Text("Второй режим"),
                   ),
 
