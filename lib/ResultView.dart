@@ -30,7 +30,10 @@ class ResultViewState extends State<ResultView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(
-                  "ваш результат" + QuizManager.instance().getCorrectAnswerCount().toString() + "/" + QuizManager.MAX_QUESTION_COUNT.toString(),
+                "ваш результат" + QuizManager.instance().getCorrectAnswerCount().toString() + "/" + QuizManager.MAX_QUESTION_COUNT.toString(),
+                style: new TextStyle(
+                  fontSize: 20.0,
+                ),
               ),
               new RaisedButton(
                   padding: const EdgeInsets.all(8.0),
