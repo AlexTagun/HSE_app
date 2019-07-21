@@ -1,5 +1,6 @@
 import 'package:hse_app/DataManager.dart';
 import 'QuizData.dart';
+import 'QuizRandom.dart';
 
 enum QuizType{
   Country,
@@ -13,6 +14,9 @@ class QuizManager{
   bool _isAnswerChecked = false;
 
   QuizData _currentQuizData;
+  QuestionData _currentQuestion;
+
+  List<int> _questionIndexes = new List();
 
 
 
@@ -21,11 +25,28 @@ class QuizManager{
   int currentQuestionId = 0;
 
   void startQuiz(QuizType type){
-
     _currentQuizData = _getCurrentQuizData(type);
+
+    var questionLength = _currentQuizData.questions.length;
+    _questionIndexes = QuizRandom.instance().generateIntList(questionLength, MAX_QUESTION_COUNT,true);
+
     currentQuestionId = 0;
+    _currentQuestion = _currentQuizData.questions[_getCurrentQuestionIndex()];
+
     _correctAnswerCount = 0;
     _isAnswerChecked = false;
+
+
+  }
+
+  int _getCurrentQuestionIndex(){
+    if(currentQuestionId < MAX_QUESTION_COUNT){
+      return _questionIndexes[currentQuestionId];
+    }else{
+      var lastIndex = _questionIndexes.length - 1;
+      return _questionIndexes[lastIndex];
+    }
+
   }
 
   QuizData _getCurrentQuizData(QuizType type){
@@ -44,11 +65,13 @@ class QuizManager{
 
   void changeQuestion() {
     currentQuestionId++;
+    _currentQuestion = _currentQuizData.questions[_getCurrentQuestionIndex()];
+
     _isAnswerChecked = false;
   }
 
   bool isAnswerCorrect(int id){
-    var isCorrect = _currentQuizData.questions[currentQuestionId].answers[id].isCorrect;
+    var isCorrect = _currentQuestion.answers[id].isCorrect;
 
     return isCorrect;
   }
@@ -68,7 +91,7 @@ class QuizManager{
 
 
   int getCorrectAnswerId(){
-    var answers = _currentQuizData.questions[currentQuestionId].answers;
+    var answers = _currentQuestion.answers;
     for(int cnt = 0; cnt < answers.length; cnt++){
       if(answers[cnt].isCorrect) return cnt;
     }
@@ -76,12 +99,12 @@ class QuizManager{
   }
 
   String getQuestion(){
-    var question = _currentQuizData.questions[currentQuestionId];
+    var question = _currentQuestion;
     return question.text;
   }
 
   String getAnswerById(int id){
-    var answers = _currentQuizData.questions[currentQuestionId].answers;
+    var answers = _currentQuestion.answers;
     var answersLength = answers.length;
 
     if(id < answersLength){
@@ -92,8 +115,7 @@ class QuizManager{
   }
 
   String getHint(){
-    var question = _currentQuizData.questions[currentQuestionId];
-    return question.info;
+    return _currentQuestion.info;
   }
 
   int getCorrectAnswerCount(){
