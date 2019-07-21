@@ -28,7 +28,7 @@ class QuizViewState extends State<QuizView> {
   void toNextQuestionView(){
     QuizManager.instance().changeQuestion();
 
-    if (QuizManager.MAX_QUESTION_COUNT < QuizManager.instance().currentQuestionId) {
+    if (QuizManager.MAX_QUESTION_COUNT <= QuizManager.instance().currentQuestionId) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ResultView()),
