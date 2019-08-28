@@ -75,7 +75,7 @@ class CountryQuizViewState extends State<CountryQuizView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Route"),
+        title: Text("Hse App"),
       ),
       body: Center(
         child: new Column(

@@ -46,7 +46,7 @@ class MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text("Raised Button"),
+          title: new Text("Hse App"),
         ),
         body: new Center(
           child: new Column(
@@ -56,6 +56,11 @@ class MainViewState extends State<MainView> {
               new Image.asset(
                 'assets/res/hse_logo.png',
                 fit: BoxFit.contain,
+              ),
+
+              new Text("Проектно-учебная лаборатория антикоррупционной политики",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                textAlign: TextAlign.center,
               ),
 
               new Row(
