@@ -73,76 +73,97 @@ class TruthOrLieQuizViewState extends State<TruthOrLieQuizView> {
       ),
       body: Center(
         child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Expanded(
-                child: new Text(
-                    QuizManager.instance().getQuestion()
-                ),
-                flex: 2,
-              ),
 
-              Expanded(
-                child: Divider(),
-                flex: 1,
-              ),
 
               !visibilityTag ? Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(color: Colors.white),
+                child:  Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: new Text(
+                    QuizManager.instance().getQuestion(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  ),
                 ),
-                flex: 2,
-              ): new Container(),
-
-              visibilityTag ? Expanded(
-                child: new Text(QuizManager.instance().getHint(),),
-                flex: 2,
-              ): new Container(),
-
-              Expanded(
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    new RaisedButton(
-                      padding: const EdgeInsets.all(8.0),
-                      textColor: Colors.white,
-                      color: colorButton0,
-                      onPressed: (){showAnswer(0);},
-                      child: new Text(
-                          QuizManager.instance().getAnswerById(0)
-                      ),
-                    ),
-                    new RaisedButton(
-                      padding: const EdgeInsets.all(8.0),
-                      textColor: Colors.white,
-                      color: colorButton1,
-                      onPressed: (){showAnswer(1);},
-                      child: new Text(
-                          QuizManager.instance().getAnswerById(1)
-                      ),
-                    ),
-                  ],
-                ),
-                flex: 3,
-              ),
-
-              !visibilityTag ? Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(color: Colors.white),
-                ),
-                flex: 1,
-              ): new Container(),
-
-              visibilityTag ? Expanded(
-                child: new RaisedButton(
-                  padding: const EdgeInsets.all(8.0),
-                  textColor: Colors.white,
-                  color: Colors.blue,
-                  onPressed: toNextQuestionView,
-                  child: new Text("Далее"),
-                ),
-                flex: 1,
+                flex: 5,
               ) : new Container(),
+              visibilityTag ? Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: new Text(
+                    QuizManager.instance().getHint(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                flex: 5,
+              ) : new Container(),
+
+              Expanded(
+                child: Column(
+//                    mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        new RaisedButton(
+                          padding: const EdgeInsets.all(8.0),
+                          textColor: Colors.white,
+                          color: colorButton0,
+                          onPressed: (){showAnswer(0);},
+                          child: new Text(
+                              QuizManager.instance().getAnswerById(0)
+                          ),
+                        ),
+                        new RaisedButton(
+                          padding: const EdgeInsets.all(8.0),
+                          textColor: Colors.white,
+                          color: colorButton1,
+                          onPressed: (){showAnswer(1);},
+                          child: new Text(
+                              QuizManager.instance().getAnswerById(1)
+                          ),
+                        ),
+                      ],
+                    ),
+                    new Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        !visibilityTag ?  Container(
+                          decoration: const BoxDecoration(),
+                        ) : Container(),
+
+                        visibilityTag ?  new RaisedButton(
+                          padding: const EdgeInsets.all(8.0),
+                          textColor: Colors.white,
+                          color: Colors.blue,
+                          onPressed: toNextQuestionView,
+                          child: new Text("Далее"),
+                        ) : Container(),
+                      ],
+                    ),
+                  ]
+                ),
+                flex: 1,
+              ),
+
+//              !visibilityTag ? Expanded(
+//                child: Container(
+//                  decoration: const BoxDecoration(color: Colors.white),
+//                ),
+//                flex: 1,
+//              ): new Container(),
+//
+//              visibilityTag ? Expanded(
+//                child: new RaisedButton(
+//                  padding: const EdgeInsets.all(8.0),
+//                  textColor: Colors.white,
+//                  color: Colors.blue,
+//                  onPressed: toNextQuestionView,
+//                  child: new Text("Далее"),
+//                ),
+//                flex: 1,
+//              ) : new Container(),
             ]
         ),
 

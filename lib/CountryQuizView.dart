@@ -161,7 +161,7 @@ class CountryQuizViewState extends State<CountryQuizView> {
                       ),
                     ),
                     !visibilityTag ?  Container(
-                      decoration: const BoxDecoration(color: Colors.white),
+                      decoration: const BoxDecoration(),
                     ) : Container(),
 
                     visibilityTag ?  new RaisedButton(
