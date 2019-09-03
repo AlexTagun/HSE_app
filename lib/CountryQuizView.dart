@@ -92,7 +92,14 @@ class CountryQuizViewState extends State<CountryQuizView> {
                 flex: 3,
               ) : new Container(),
               visibilityTag ? Expanded(
-                child: new Text(QuizManager.instance().getHint()),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: new Text(
+                    QuizManager.instance().getHint(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 flex: 3,
               ) : new Container(),
 
