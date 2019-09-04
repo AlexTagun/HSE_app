@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'MenuView.dart';
-import 'package:hse_app/LoadManager.dart';
+import 'LoadManager.dart';
 
 void main(){
   LoadManager.instance().load();

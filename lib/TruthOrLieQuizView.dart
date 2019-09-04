@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hse_app/QuizManager.dart';
+import 'QuizManager.dart';
 import 'ResultView.dart';
 
 

@@ -1,4 +1,4 @@
-import 'package:hse_app/DataManager.dart';
+import 'DataManager.dart';
 import 'QuizData.dart';
 import 'QuizRandom.dart';
 

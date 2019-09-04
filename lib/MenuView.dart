@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'CountryQuizView.dart';
 import 'TruthOrLieQuizView.dart';
 
-import 'package:hse_app/LoadManager.dart';
-import 'package:hse_app/QuizManager.dart';
+import 'LoadManager.dart';
+import 'QuizManager.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainView extends StatefulWidget {
