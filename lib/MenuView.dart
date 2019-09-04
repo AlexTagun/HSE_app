@@ -55,22 +55,26 @@ class MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Hse App"),
-        ),
+
         body: new Center(
           child: new Column(
 //            mainAxisAlignment: MainAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
 
-              new Image.asset(
-                'assets/res/hse_logo.png',
-                fit: BoxFit.contain,
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: new Image.asset(
+                  'assets/res/hse_logo.png',
+                  fit: BoxFit.contain,
+                ),
               ),
-              new Image.asset(
-                'assets/res/lab_logo.png',
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: new Image.asset(
+                  'assets/res/lab_logo.png',
 //                fit: BoxFit.contain,
+                ),
               ),
 
 

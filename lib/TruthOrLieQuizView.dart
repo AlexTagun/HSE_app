@@ -68,9 +68,9 @@ class TruthOrLieQuizViewState extends State<TruthOrLieQuizView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Hse App"),
-      ),
+//      appBar: AppBar(
+//        title: Text("Hse App"),
+//      ),
       body: Center(
         child: new Column(
             children: <Widget>[

@@ -74,39 +74,44 @@ class CountryQuizViewState extends State<CountryQuizView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Hse App"),
-      ),
+//      appBar: AppBar(
+//        title: Text("Hse App"),
+//      ),
       body: Center(
         child: new Column(
             children: <Widget>[
               !visibilityTag ? Expanded(
-                child:  Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: new Text(
-                    QuizManager.instance().getQuestion(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                      child: new Text(
+
+                        QuizManager.instance().getQuestion(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,),
+                      ),
+                    ),
                   ),
-                ),
-                flex: 3,
+                flex: 1,
+
               ) : new Container(),
               visibilityTag ? Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: new Text(
-                    QuizManager.instance().getHint(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                    child: new Text(
+                      QuizManager.instance().getHint(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
-                flex: 3,
+                flex: 1,
               ) : new Container(),
 
 
 
-              Expanded(
-                child:  new Column(
+              new Column(
                   children: <Widget>[
                     ButtonTheme(
                       minWidth: double.infinity,
@@ -160,22 +165,26 @@ class CountryQuizViewState extends State<CountryQuizView> {
                         ),
                       ),
                     ),
-                    !visibilityTag ?  Container(
-                      decoration: const BoxDecoration(),
-                    ) : Container(),
+                    Visibility(
+                      visible: visibilityTag,
+                      maintainSize: true,
+                      maintainAnimation: true,
+                      maintainState: true,
+                      child: new RaisedButton(
+                        padding: const EdgeInsets.all(8.0),
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                        onPressed: toNextQuestionView,
+                        child: new Text("Далее"),
+                      )
+                    ),
 
-                    visibilityTag ?  new RaisedButton(
-                      padding: const EdgeInsets.all(8.0),
-                      textColor: Colors.white,
-                      color: Colors.blue,
-                      onPressed: toNextQuestionView,
-                      child: new Text("Далее"),
-                    ) : Container(),
+
                   ],
                 ),
 
-                flex: 2,
-              ),
+//                flex: 2,
+//              ),
 
 
 
