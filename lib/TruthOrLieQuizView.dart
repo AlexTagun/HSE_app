@@ -77,31 +77,37 @@ class TruthOrLieQuizViewState extends State<TruthOrLieQuizView> {
 
 
               !visibilityTag ? Expanded(
-                child:  Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: new Text(
-                    QuizManager.instance().getQuestion(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                    child: new Text(
+
+                      QuizManager.instance().getQuestion(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,),
+                    ),
                   ),
                 ),
-                flex: 5,
+                flex: 1,
+
               ) : new Container(),
               visibilityTag ? Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: new Text(
-                    QuizManager.instance().getHint(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                    child: new Text(
+                      QuizManager.instance().getHint(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
-                flex: 5,
+                flex: 1,
               ) : new Container(),
 
               Expanded(
                 child: Column(
-//                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     new Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -129,17 +135,19 @@ class TruthOrLieQuizViewState extends State<TruthOrLieQuizView> {
                     new Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        !visibilityTag ?  Container(
-                          decoration: const BoxDecoration(),
-                        ) : Container(),
-
-                        visibilityTag ?  new RaisedButton(
-                          padding: const EdgeInsets.all(8.0),
-                          textColor: Colors.white,
-                          color: Colors.blue,
-                          onPressed: toNextQuestionView,
-                          child: new Text("Далее"),
-                        ) : Container(),
+                        Visibility(
+                            visible: visibilityTag,
+                            maintainSize: true,
+                            maintainAnimation: true,
+                            maintainState: true,
+                            child: new RaisedButton(
+                              padding: const EdgeInsets.all(8.0),
+                              textColor: Colors.white,
+                              color: Colors.blue,
+                              onPressed: toNextQuestionView,
+                              child: new Text("Далее"),
+                            )
+                        ),
                       ],
                     ),
                   ]
