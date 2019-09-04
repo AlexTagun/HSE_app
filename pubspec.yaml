@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  url_launcher: ^5.1.2
   flutter:
     sdk: flutter
 
@@ -47,6 +48,7 @@ flutter:
     - assets/res/CountryQuiz.xml
     - assets/res/TruthOrLieQuiz.xml
     - assets/res/hse_logo.png
+    - assets/res/lab_logo.png
 
   fonts:
     - family: MyriadPro
