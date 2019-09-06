@@ -1,4 +1,5 @@
 import 'QuizData.dart';
+import 'QuizType.dart';
 
 class DataManager{
   static DataManager _manager;
@@ -7,10 +8,12 @@ class DataManager{
   QuizData _truthOrLieData;
 
   void setCountryQuizData(QuizData data){
+    data.quizType = QuizType.Country;
     _countryQuizData = data;
   }
 
   void setTruthOrLieQuizData(QuizData data){
+    data.quizType = QuizType.TruthOrLie;
     _truthOrLieData = data;
   }
 

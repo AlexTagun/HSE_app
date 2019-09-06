@@ -1,11 +1,9 @@
 import 'DataManager.dart';
 import 'QuizData.dart';
 import 'QuizRandom.dart';
+import 'QuizType.dart';
 
-enum QuizType{
-  Country,
-  TruthOrLie,
-}
+
 
 class QuizManager{
   static const int MAX_QUESTION_COUNT = 10;

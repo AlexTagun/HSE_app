@@ -1,0 +1,4 @@
+enum QuizType{
+  Country,
+  TruthOrLie,
+}

@@ -4,6 +4,7 @@ import 'TruthOrLieQuizView.dart';
 
 import 'LoadManager.dart';
 import 'QuizManager.dart';
+import 'QuizType.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainView extends StatefulWidget {

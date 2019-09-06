@@ -1,4 +1,7 @@
+import 'QuizType.dart';
+
 class QuizData{
+  QuizType quizType;
   List<QuestionData> questions;
 }
 
