@@ -62,28 +62,18 @@ class MainViewState extends State<MainView> {
 //            mainAxisAlignment: MainAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: new Image.asset(
-                  'assets/res/hse_logo.png',
+                  'assets/res/hse_plus_lab_logo.png',
                   fit: BoxFit.contain,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: new Image.asset(
-                  'assets/res/lab_logo.png',
-//                fit: BoxFit.contain,
-                ),
-              ),
-
-
-//              new Text("Проектно-учебная лаборатория антикоррупционной политики",
-//                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-//                textAlign: TextAlign.center,
 //              ),
-
+              new Text("Антикоррупционная обучающая игра",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                textAlign: TextAlign.center,
+              ),
               new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
