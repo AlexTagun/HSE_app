@@ -22,9 +22,6 @@ class ResultViewState extends State<ResultView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
-      ),
       body: Center(
         child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
