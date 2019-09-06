@@ -49,6 +49,8 @@ flutter:
     - assets/res/TruthOrLieQuiz.xml
     - assets/res/hse_logo.png
     - assets/res/lab_logo.png
+    - assets/res/hse_plus_lab_logo.png
+
 
   fonts:
     - family: MyriadPro
