@@ -28,7 +28,7 @@ class CountryQuizViewState extends State<CountryQuizView> {
   void toNextQuestionView(){
     QuizManager.instance().changeQuestion();
 
-    if (QuizManager.MAX_QUESTION_COUNT <= QuizManager.instance().currentQuestionId) {
+    if (QuizManager.instance().isQuestionsEnded()) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ResultView()),

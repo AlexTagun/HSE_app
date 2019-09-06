@@ -40,13 +40,16 @@ class QuizManager{
   }
 
   int _getCurrentQuestionIndex(){
-    if(currentQuestionId < MAX_QUESTION_COUNT){
-      return _questionIndexes[currentQuestionId];
-    }else{
+    if(isQuestionsEnded()){
       var lastIndex = _questionIndexes.length - 1;
       return _questionIndexes[lastIndex];
+    }else{
+      return _questionIndexes[currentQuestionId];
     }
+  }
 
+  bool isQuestionsEnded(){
+    return MAX_QUESTION_COUNT <= currentQuestionId;
   }
 
   QuizData _getCurrentQuizData(QuizType type){

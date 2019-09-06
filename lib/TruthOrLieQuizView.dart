@@ -26,7 +26,7 @@ class TruthOrLieQuizViewState extends State<TruthOrLieQuizView> {
   void toNextQuestionView(){
     QuizManager.instance().changeQuestion();
 
-    if (QuizManager.MAX_QUESTION_COUNT <= QuizManager.instance().currentQuestionId) {
+    if (QuizManager.instance().isQuestionsEnded()) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ResultView()),
