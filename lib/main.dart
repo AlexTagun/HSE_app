@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'MenuView.dart';
 import 'LoadManager.dart';
+import 'PreloadView.dart';
 
 void main(){
   LoadManager.instance().load();
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: MainView(),
+      home: PreloadView(),
     );
   }
 }
