@@ -26,33 +26,48 @@ class MainViewState extends State<MainView> {
 
 
   void clickContinueButton(){
+    var quizTypeIndex = DataManager.instance().getPlayerSave().quizType;
+    var quizType = QuizType.values[quizTypeIndex];
+
+    changeQuizView(quizType);
+  }
+
+  void changeQuizView(QuizType quizType){
+    if(LoadManager.instance().isAllLoaded()){
+      QuizManager.instance().startQuiz(quizType);
+
+      switch(quizType){
+        case QuizType.Country :
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CountryQuizView()),
+
+          );
+          break;
+        case QuizType.TruthOrLie:
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TruthOrLieQuizView()),
+
+          );
+          break;
+        default:
+          print("quizType = " + quizType.toString() + " not found");
+
+      }
+    }else{
+      print("File is not loaded");
+    }
+
 
   }
 
   void toCountryQuizView(){
-    if(LoadManager.instance().isAllLoaded()) {
-      QuizManager.instance().startQuiz(QuizType.Country);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CountryQuizView()),
-
-      );
-    }else{
-      print("File is not loaded");
-    }
+    changeQuizView(QuizType.Country);
   }
 
   void toTrueOrLieQuizView(){
-    if(LoadManager.instance().isAllLoaded()) {
-      QuizManager.instance().startQuiz(QuizType.TruthOrLie);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => TruthOrLieQuizView()),
-
-      );
-    }else{
-      print("File is not loaded");
-    }
+    changeQuizView(QuizType.TruthOrLie);
   }
 
   _launchURL() async {

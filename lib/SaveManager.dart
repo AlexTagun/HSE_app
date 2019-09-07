@@ -9,7 +9,7 @@ class SaveManager{
   static SaveManager _manager;
 
   void save(QuizType quizType, int correctAnswerCount, int currentQuestionId, List<int> questionIndexers) async{
-    var playerSave = new PlayerSave(quizType: quizType.toString(), correctAnswerCount: correctAnswerCount,
+    var playerSave = new PlayerSave(quizType: quizType.index, correctAnswerCount: correctAnswerCount,
         currentQuestionId: currentQuestionId, questionIndexers: questionIndexers);
 
     DataManager.instance().setPlayerSave(playerSave);

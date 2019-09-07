@@ -1,7 +1,7 @@
 
 
 class PlayerSave {
-  String quizType;
+  int quizType;
   int correctAnswerCount;
   int currentQuestionId;
   List<int> questionIndexers;
