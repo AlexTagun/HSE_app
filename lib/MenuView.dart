@@ -4,6 +4,7 @@ import 'TruthOrLieQuizView.dart';
 
 import 'LoadManager.dart';
 import 'QuizManager.dart';
+import 'DataManager.dart';
 import 'QuizType.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,7 +16,18 @@ class MainView extends StatefulWidget {
 }
 
 class MainViewState extends State<MainView> {
+  bool canShowContinueButton = false;
 
+  @override
+  void initState() {
+    canShowContinueButton = DataManager.instance().getPlayerSave() != null;
+    super.initState();
+  }
+
+
+  void clickContinueButton(){
+
+  }
 
   void toCountryQuizView(){
     if(LoadManager.instance().isAllLoaded()) {
@@ -80,6 +92,19 @@ class MainViewState extends State<MainView> {
                     new Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
+                        Visibility(
+                          visible: canShowContinueButton,
+                          maintainSize: true,
+                          maintainAnimation: true,
+                          maintainState: true,
+                          child: new RaisedButton(
+                            padding: const EdgeInsets.all(8.0),
+                            textColor: Colors.white,
+                            color: Colors.blue,
+                            onPressed: clickContinueButton,
+                            child: new Text("Продолжить"),
+                          ),
+                        ),
                           new RaisedButton(
                             padding: const EdgeInsets.all(8.0),
                             textColor: Colors.white,
