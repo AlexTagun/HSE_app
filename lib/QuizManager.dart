@@ -1,6 +1,7 @@
 import 'DataManager.dart';
 import 'QuizData.dart';
 import 'QuizRandom.dart';
+import 'SaveManager.dart';
 import 'QuizType.dart';
 
 
@@ -34,7 +35,7 @@ class QuizManager{
     _correctAnswerCount = 0;
     _isAnswerChecked = false;
 
-
+    _trySave();
   }
 
   int _getCurrentQuestionIndex(){
@@ -69,6 +70,8 @@ class QuizManager{
     _currentQuestion = _currentQuizData.questions[_getCurrentQuestionIndex()];
 
     _isAnswerChecked = false;
+
+    _trySave();
   }
 
   bool isAnswerCorrect(int id){
@@ -121,6 +124,12 @@ class QuizManager{
 
   int getCorrectAnswerCount(){
     return _correctAnswerCount;
+  }
+
+  void _trySave(){
+    if(!isQuestionsEnded()){
+      SaveManager.instance().save(_currentQuizData.quizType, _correctAnswerCount, currentQuestionId, _questionIndexes);
+    }
   }
 
   static QuizManager instance(){

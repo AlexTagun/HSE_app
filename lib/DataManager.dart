@@ -1,11 +1,15 @@
 import 'QuizData.dart';
 import 'QuizType.dart';
 
+import 'PlayerSave.dart';
+
 class DataManager{
   static DataManager _manager;
 
   QuizData _countryQuizData;
   QuizData _truthOrLieData;
+
+  PlayerSave _playerSave;
 
   void setCountryQuizData(QuizData data){
     data.quizType = QuizType.Country;
@@ -17,12 +21,20 @@ class DataManager{
     _truthOrLieData = data;
   }
 
+  void setPlayerSave(PlayerSave playerSave){
+    _playerSave = playerSave;
+  }
+
   QuizData getCountryQuizData(){
     return _countryQuizData;
   }
 
   QuizData getTruthOrLieQuizData(){
     return _truthOrLieData;
+  }
+
+  PlayerSave getPlayerSave(){
+    return _playerSave;
   }
 
   static DataManager instance(){
