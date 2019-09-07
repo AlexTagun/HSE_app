@@ -3,6 +3,8 @@ import 'QuizType.dart';
 
 import 'PlayerSave.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class DataManager{
   static DataManager _manager;
 
@@ -35,6 +37,13 @@ class DataManager{
 
   PlayerSave getPlayerSave(){
     return _playerSave;
+  }
+
+  void clearPlayerSave() async{
+    _playerSave = null;
+
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove("player_save");
   }
 
   static DataManager instance(){
