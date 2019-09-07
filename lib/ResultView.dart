@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'QuizManager.dart';
 import 'MenuView.dart';
 
+import 'DataManager.dart';
+
 class ResultView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -10,6 +12,12 @@ class ResultView extends StatefulWidget {
 }
 
 class ResultViewState extends State<ResultView> {
+
+  @override
+  void initState() {
+    DataManager.instance().clearPlayerSave();
+    super.initState();
+  }
 
   void toMenuView(){
     Navigator.push(

@@ -27,6 +27,8 @@ dependencies:
 
   xml: ^3.4.0
 
+  shared_preferences: ^0.5.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,6 +52,7 @@ flutter:
     - assets/res/hse_logo.png
     - assets/res/lab_logo.png
     - assets/res/hse_plus_lab_logo.png
+    - assets/res/preload_hse_logo.png
 
 
   fonts:

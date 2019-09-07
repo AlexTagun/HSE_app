@@ -4,6 +4,7 @@ import 'TruthOrLieQuizView.dart';
 
 import 'LoadManager.dart';
 import 'QuizManager.dart';
+import 'DataManager.dart';
 import 'QuizType.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,32 +16,58 @@ class MainView extends StatefulWidget {
 }
 
 class MainViewState extends State<MainView> {
+  bool canShowContinueButton = false;
+
+  @override
+  void initState() {
+    canShowContinueButton = DataManager.instance().getPlayerSave() != null;
+    super.initState();
+  }
 
 
-  void toCountryQuizView(){
-    if(LoadManager.instance().isAllLoaded()) {
-      QuizManager.instance().startQuiz(QuizType.Country);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CountryQuizView()),
+  void clickContinueButton(){
+    var quizTypeIndex = DataManager.instance().getPlayerSave().quizType;
+    var quizType = QuizType.values[quizTypeIndex];
 
-      );
+    changeQuizView(quizType, true);
+  }
+
+  void changeQuizView(QuizType quizType, bool useSave){
+    if(LoadManager.instance().isAllLoaded()){
+      QuizManager.instance().startQuiz(quizType, useSave);
+
+      switch(quizType){
+        case QuizType.Country :
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CountryQuizView()),
+
+          );
+          break;
+        case QuizType.TruthOrLie:
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TruthOrLieQuizView()),
+
+          );
+          break;
+        default:
+          print("quizType = " + quizType.toString() + " not found");
+
+      }
     }else{
       print("File is not loaded");
     }
+
+
+  }
+
+  void toCountryQuizView(){
+    changeQuizView(QuizType.Country, false);
   }
 
   void toTrueOrLieQuizView(){
-    if(LoadManager.instance().isAllLoaded()) {
-      QuizManager.instance().startQuiz(QuizType.TruthOrLie);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => TruthOrLieQuizView()),
-
-      );
-    }else{
-      print("File is not loaded");
-    }
+    changeQuizView(QuizType.TruthOrLie, false);
   }
 
   _launchURL() async {
@@ -80,6 +107,19 @@ class MainViewState extends State<MainView> {
                     new Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
+                        Visibility(
+                          visible: canShowContinueButton,
+                          maintainSize: true,
+                          maintainAnimation: true,
+                          maintainState: true,
+                          child: new RaisedButton(
+                            padding: const EdgeInsets.all(8.0),
+                            textColor: Colors.white,
+                            color: Colors.blue,
+                            onPressed: clickContinueButton,
+                            child: new Text("Продолжить"),
+                          ),
+                        ),
                           new RaisedButton(
                             padding: const EdgeInsets.all(8.0),
                             textColor: Colors.white,

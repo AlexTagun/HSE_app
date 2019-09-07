@@ -1,6 +1,10 @@
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+
 import 'Parser.dart';
 import 'DataManager.dart';
+import 'package:hse_lab_app/PlayerSave.dart';
 
 class LoadManager{
   static const String COUNTRY_QUIZ_PATH = "assets/res/CountryQuiz.xml";
@@ -8,12 +12,14 @@ class LoadManager{
 
   bool _isAllLoaded = false;
 
+  bool _isPlayerSaveLoaded = false;
   bool _isCountryQuizLoaded = false;
   bool _isTruthOrLieQuizLoaded = false;
 
   static LoadManager _manager;
 
   void load(){
+    _loadPlayerSave();
     _loadCountryQuiz();
     _loadTruthOrLieQuiz();
   }
@@ -28,6 +34,22 @@ class LoadManager{
 
   bool isAllLoaded(){
     return _isAllLoaded;
+  }
+
+  void _loadPlayerSave() async{
+    final prefs = await SharedPreferences.getInstance();
+
+    if(prefs.containsKey("player_save")){
+      var jsonString = prefs.getString("player_save");
+      var json = jsonDecode(jsonString);
+      PlayerSave playerSave = PlayerSave.fromJson(json);
+
+      DataManager.instance().setPlayerSave(playerSave);
+
+      print("jsonLoad = " + jsonString);
+    }
+
+    _isPlayerSaveLoaded = true;
   }
 
   Future<String> _loadCountryQuiz() async{
@@ -53,7 +75,7 @@ class LoadManager{
   }
 
   void _checkAllLoaded(){
-    if(_isCountryQuizLoaded && _isTruthOrLieQuizLoaded){
+    if(_isPlayerSaveLoaded && _isCountryQuizLoaded && _isTruthOrLieQuizLoaded){
       _isAllLoaded = true;
     }
   }
