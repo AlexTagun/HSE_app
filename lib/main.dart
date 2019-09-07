@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'LoadManager.dart';
 import 'PreloadView.dart';
+import 'MenuView.dart';
 
 void main(){
   LoadManager.instance().load();
