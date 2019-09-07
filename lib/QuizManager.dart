@@ -23,16 +23,25 @@ class QuizManager{
   static QuizManager _manager;
   int currentQuestionId = 0;
 
-  void startQuiz(QuizType type){
+  void startQuiz(QuizType type, bool useSave){
     _currentQuizData = _getCurrentQuizData(type);
 
     var questionLength = _currentQuizData.questions.length;
-    _questionIndexes = QuizRandom.instance().generateIntList(questionLength, MAX_QUESTION_COUNT,true);
 
-    currentQuestionId = 0;
+    if(useSave){
+      var playerSave = DataManager.instance().getPlayerSave();
+
+      _questionIndexes = playerSave.questionIndexers;
+      currentQuestionId = playerSave.currentQuestionId;
+      _correctAnswerCount = playerSave.correctAnswerCount;
+
+    }else{
+      _questionIndexes = QuizRandom.instance().generateIntList(questionLength, MAX_QUESTION_COUNT,true);
+      currentQuestionId = 0;
+      _correctAnswerCount = 0;
+    }
+
     _currentQuestion = _currentQuizData.questions[_getCurrentQuestionIndex()];
-
-    _correctAnswerCount = 0;
     _isAnswerChecked = false;
 
     _trySave();

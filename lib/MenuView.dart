@@ -29,12 +29,12 @@ class MainViewState extends State<MainView> {
     var quizTypeIndex = DataManager.instance().getPlayerSave().quizType;
     var quizType = QuizType.values[quizTypeIndex];
 
-    changeQuizView(quizType);
+    changeQuizView(quizType, true);
   }
 
-  void changeQuizView(QuizType quizType){
+  void changeQuizView(QuizType quizType, bool useSave){
     if(LoadManager.instance().isAllLoaded()){
-      QuizManager.instance().startQuiz(quizType);
+      QuizManager.instance().startQuiz(quizType, useSave);
 
       switch(quizType){
         case QuizType.Country :
@@ -63,11 +63,11 @@ class MainViewState extends State<MainView> {
   }
 
   void toCountryQuizView(){
-    changeQuizView(QuizType.Country);
+    changeQuizView(QuizType.Country, false);
   }
 
   void toTrueOrLieQuizView(){
-    changeQuizView(QuizType.TruthOrLie);
+    changeQuizView(QuizType.TruthOrLie, false);
   }
 
   _launchURL() async {
